@@ -1,0 +1,37 @@
+---
+new_groups_params:
+  - name: example_group
+
+new_users_params:
+  - name: example_user
+    is_sudo: true
+    no_pwd_sudo: true
+    shell: /bin/bash
+    password: "example_password"
+    email: example@example.com
+    groups:
+      - sudo
+      - example_group
+    ssh:
+      keys:
+        - priv: "{{lookup('file', 'resources/users/example_user_ssh.pem')}}"
+          pub: "{{lookup('file', 'resources/users/example_user_ssh.pub')}}"
+        
+        - pub: "{{lookup('file', 'resources/users/just_public_key.pub')}}"
+        
+        - priv: "{{lookup('file', 'resources/users/just_priv_key.pub')}}"
+
+inventory_params:
+  to_init_group_name: to_init
+  group_path: "{{ inventory_dir }}/groups/"
+  host_path: "{{ inventory_dir }}/hosts/"
+
+credentials_params:
+  path: "{{ playbook_dir | dirname }}/resources/credentials/generated/ssh/"
+
+ssh_params:
+  connection_port: 1122
+  bind_port: 22
+  permit_root_login: no
+  permit_empty_password: no
+  permit_password_authentication: no

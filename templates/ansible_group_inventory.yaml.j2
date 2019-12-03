@@ -1,0 +1,9 @@
+{{ ansible_managed | comment }}
+
+all:
+  children:
+    {{ gname }}:
+      hosts:
+{% for host in ghosts %}
+        {{ host }}:
+{% endfor %}

@@ -1,0 +1,27 @@
+galaxy_info:
+  author: Alex V Kotelnikov 
+  description: Role for automated create credentials and inventory files for new host
+  license: "license (Apache)"
+
+  min_ansible_version: 2.4
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - 16.04
+        - 17.10
+        - 18.04
+        - 18.10
+    - name: Debian
+      versions:
+        - 8.0
+        - 9.0  
+
+  galaxy_tags:
+    - new host
+    - new host under ansible managment
+    - new ansible host
+
+allow_duplicates: true
+
+dependencies: []

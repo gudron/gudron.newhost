@@ -1,0 +1,8 @@
+---
+- set_fact:
+    new_users_values: "{{ new_users_params }}"
+
+- set_fact:
+    inventory_vars:
+      user_for_connect: "{{ new_users_values | rejectattr('is_sudo') | first }}"
+      user_for_become: "{{ new_users_values | selectattr('is_sudo', 'equalto', True) | first }}"

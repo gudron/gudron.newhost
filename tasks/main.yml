@@ -1,0 +1,10 @@
+---
+- name: Inlcude tasks
+  include_tasks: "{{ task }}"
+  loop:
+    - set_vars.yaml
+    - roles_runner.yaml
+    - clear_ssh_fingerprint.yaml
+    - make_inventory.yaml
+  loop_control:
+    loop_var: task

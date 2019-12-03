@@ -1,0 +1,3 @@
+---
+existed_groups: "{{ groups.keys() | difference([inventory_params.to_init_group_name, 'ungrouped']) }}"
+to_init_hosts: "{{ groups[inventory_params.to_init_group_name] }}"

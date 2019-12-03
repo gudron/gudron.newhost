@@ -1,0 +1,8 @@
+---
+- name: Prepare groups inventory
+  local_action:
+    module: template
+    src: "templates/ansible_group_inventory.yaml.j2"
+    dest: "{{ inventory_params.group_path }}{{ gname }}.yaml"
+    mode: "u=rw,g=r"
+  become: false

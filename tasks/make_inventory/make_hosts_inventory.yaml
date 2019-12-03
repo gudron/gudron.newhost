@@ -1,0 +1,16 @@
+---
+- name: Create inventory dir
+  local_action:
+    module: file
+    path: "{{ inventory_params.host_path }}/{{ inventory_hostname }}"
+    state: directory
+    mode: "u=rwx,g=r"
+  become: false
+
+- name: Prepare inventory
+  local_action:
+    module: template
+    src: "templates/ansible_host_inventory.yaml.j2"
+    dest: "{{ inventory_params.host_path }}/{{ inventory_hostname }}/{{ inventory_hostname }}.yaml"
+    mode: "u=rw,g=r"
+  become: false
