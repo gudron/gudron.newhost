@@ -4,7 +4,7 @@ all:
   hosts:
     {{ inventory_hostname }}:
       hostname: {{ lookup('pipe', 'ansible-vault encrypt_string ' + inventory_hostname | quote ) | indent(5, false) }}
-      ansible_python_interpreter: {{ ansible_python_interpreter | default('/usb/bin/python3') }}
+      ansible_python_interpreter: {{ ansible_python_interpreter | default('/usr/bin/python3') }}
       ansible_host: {{ lookup('pipe', 'ansible-vault encrypt_string ' + ansible_host | quote ) | indent(5, false) }}
       ansible_port: {{ ssh_params.connection_port }}
       ansible_user: {{ lookup('pipe', 'ansible-vault encrypt_string ' + inventory_vars.user_for_become.name | quote ) | indent(5, false) }}
