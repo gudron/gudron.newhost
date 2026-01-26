@@ -16,10 +16,12 @@ new_users_params:
       keys:
         - priv: "{{lookup('file', 'resources/users/example_user_ssh.pem')}}"
           pub: "{{lookup('file', 'resources/users/example_user_ssh.pub')}}"
+          key_type: rsa
         
         - pub: "{{lookup('file', 'resources/users/just_public_key.pub')}}"
         
         - priv: "{{lookup('file', 'resources/users/just_priv_key.pub')}}"
+          key_type: ed25519
 
 inventory_params:
   to_init_group_name: to_init
