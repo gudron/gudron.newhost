@@ -1,19 +1,19 @@
 ---
 - name: Include role. Ssh generator
-  include_role:
+  ansible.builtin.include_role:
     name: gudron.ssh_keys_generator
   vars: 
     new_keys: "{{ new_users_values | map(attribute='ssh.keys') | list | flatten }}"
 
 - name: Include role. Create users
-  include_role:
+  ansible.builtin.include_role:
     name: gudron.os_users
   vars: 
     users_list: "{{ new_users_values }}"
     groups_list: "{{ new_groups_params }}"
 
 - name: Include role. Ssh server
-  include_role:
+  ansible.builtin.include_role:
     name: gudron.ssh_server
   vars:
     ssh_port: "{{ ssh_params.bind_port }}"

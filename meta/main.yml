@@ -8,14 +8,20 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
-        - 16.04
-        - 17.10
-        - 18.04
-        - 18.10
+        - 24.04
+        - 22.04
+        - 20.04
     - name: Debian
       versions:
-        - 8.0
-        - 9.0  
+        - 12.0
+        - 11.0
+        - 10.0
+    - name: OtherLinux
+    - name: Alpine
+      versions:
+        - 3.23
+        - 3.22
+        - 3.21
 
   galaxy_tags:
     - new host

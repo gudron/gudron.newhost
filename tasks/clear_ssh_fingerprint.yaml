@@ -1,6 +1,6 @@
 ---
 - name: Remove ssh fingerprint from known host file
-  shell: ssh-keygen -R {{ addr }}
+  ansible.builtin.shell: ssh-keygen -R {{ addr }}
   ignore_errors: True
   loop:
     - "{{ inventory_hostname }}"
