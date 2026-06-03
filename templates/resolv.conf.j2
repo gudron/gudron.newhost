@@ -1,0 +1,5 @@
+# {{ ansible_managed | comment }}
+{% for server in dns_resolver.dns_servers %}
+nameserver {{ server }}
+{% endfor %}
+search {{ dns_resolver.search_domain }}

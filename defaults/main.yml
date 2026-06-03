@@ -37,3 +37,9 @@ ssh_params:
   permit_root_login: no
   permit_empty_password: no
   permit_password_authentication: no
+
+dns_resolver:
+  search_domain: company.local
+  dns_servers:
+    - 1.1.1.1
+    - 8.8.8.8

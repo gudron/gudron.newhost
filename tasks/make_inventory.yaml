@@ -1,3 +1,0 @@
----
-- name: Prepare hosts inventory
-  ansible.builtin.include_tasks: ./make_inventory/make_hosts_inventory.yaml

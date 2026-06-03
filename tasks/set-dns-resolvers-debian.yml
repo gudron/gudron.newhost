@@ -1,0 +1,17 @@
+---
+- name: Install resolvconf service
+  ansible.builtin.apt:
+    name: resolvconf
+    state: present
+    update_cache: true
+
+- name: Distribute resolv.conf template
+  ansible.builtin.template:
+    src: templates/resolv.conf.j2
+    dest: /etc/resolv.conf
+    mode: '0644'
+
+- name: Force update resolvconf configuration
+  ansible.builtin.command: resolvconf -u
+  changed_when: true
+  failed_when: false 

@@ -1,0 +1,19 @@
+---
+- name: Distribute resolv.conf template
+  ansible.builtin.template:
+    src: templates/resolv.conf.j2
+    dest: /etc/resolv.conf
+    mode: '0644'
+
+- name: Remove dhcp dns override
+  ansible.builtin.lineinfile:
+    path: /etc/network/interfaces
+    regexp: '^(\s*iface\s+\S+\s+inet\s+dhcp.*)$'
+    line: '\1 --nodns'
+    backrefs: true
+  failed_when: false
+
+- name: Restart networking
+  ansible.builtin.service:
+    name: networking
+    state: restarted
