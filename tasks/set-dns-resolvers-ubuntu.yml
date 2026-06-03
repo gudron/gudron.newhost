@@ -1,0 +1,38 @@
+---
+- name: Install resolvconf service
+  ansible.builtin.apt:
+    name: resolvconf
+    state: present
+    update_cache: true
+
+- name: Disable systemd-resolved
+  ansible.builtin.systemd:
+    name: systemd-resolved
+    state: stopped
+    enabled: false
+  failed_when: false
+
+- name: Distribute resolv.conf template
+  ansible.builtin.template:
+    src: templates/resolv.conf.j2
+    dest: /etc/resolv.conf
+    mode: '0644'
+
+- name: Check existence of resolvconf systemd service
+  ansible.builtin.command: systemctl list-unit-files resolvconf.service
+  register: resolvconf_service_check
+  changed_when: false
+  failed_when: false
+
+- name: Enable resolvconf service
+  ansible.builtin.systemd:
+    name: resolvconf
+    enabled: true
+    state: started
+  when: "'resolvconf.service' in resolvconf_service_check.stdout"
+
+- name: Force update resolvconf configuration
+  ansible.builtin.command: resolvconf -u
+  changed_when: true
+  failed_when: false 
+  when: "'resolvconf.service' not in resolvconf_service_check.stdout"
